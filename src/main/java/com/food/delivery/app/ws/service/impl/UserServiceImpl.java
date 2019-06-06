@@ -2,6 +2,9 @@ package com.food.delivery.app.ws.service.impl;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.food.delivery.app.ws.io.entity.UserEntity;
@@ -19,6 +22,9 @@ public class UserServiceImpl implements UserService{
 	@Autowired
 	Utils utils;
 	
+	@Autowired
+	BCryptPasswordEncoder bCryptPasswordEncoder;
+	
 	@Override
 	public UserDto createUser(UserDto user) {
 		
@@ -28,7 +34,7 @@ public class UserServiceImpl implements UserService{
 		BeanUtils.copyProperties(user, userEntity);
 		
 		userEntity.setPicURL("temporory_pic_url");
-		userEntity.setEncryptedPassword("sample_Password");
+		userEntity.setEncryptedPassword(bCryptPasswordEncoder.encode(user.getPassword()));
 		
 		String publicUserId = utils.generateUserId(30);
 		userEntity.setUserId(publicUserId);
@@ -38,6 +44,11 @@ public class UserServiceImpl implements UserService{
 		BeanUtils.copyProperties(storedUserDetails, returnValue);
 		
 		return returnValue;
+	}
+
+	@Override
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+		return null;
 	}
 
 }
