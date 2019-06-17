@@ -17,7 +17,7 @@ import com.food.delivery.app.ws.service.UserService;
 import com.food.delivery.app.ws.shared.dto.UserDto;
 
 @RestController
-@RequestMapping("users")
+@RequestMapping("/users")
 public class UsesrController {
 
 	@Autowired
