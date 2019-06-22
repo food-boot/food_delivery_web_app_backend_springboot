@@ -2,6 +2,7 @@ package com.food.delivery.app.ws.ui.controller;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,6 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.food.delivery.app.ws.model.request.UserDetailsRequestModel;
+import com.food.delivery.app.ws.model.response.OperationStatusModel;
+import com.food.delivery.app.ws.model.response.RequestOperationName;
+import com.food.delivery.app.ws.model.response.RequestOperationStatus;
 import com.food.delivery.app.ws.model.response.UserRest;
 import com.food.delivery.app.ws.service.UserService;
 import com.food.delivery.app.ws.shared.dto.UserDto;
@@ -25,19 +29,22 @@ public class UsesrController {
 	UserService userService;
 
 	@CrossOrigin
-	@GetMapping(path = "/{id}")
+	@GetMapping(path = "/{id}", 
+			produces = { MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE })
 	public UserRest getUser(@PathVariable String id) {
 
 		UserRest returnValue = new UserRest();
-		
+
 		UserDto userDto = userService.getUserByUserId(id);
 		BeanUtils.copyProperties(userDto, returnValue);
-		
+
 		return returnValue;
 	}
 
 	@CrossOrigin
-	@PostMapping
+	@PostMapping(
+			consumes = { MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE }, 
+			produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE })
 	public UserRest createUser(@RequestBody UserDetailsRequestModel userDetails) {
 
 		UserRest returnValue = new UserRest();
@@ -51,13 +58,30 @@ public class UsesrController {
 		return returnValue;
 	}
 
-	@PutMapping
-	public String updateUser() {
-		return "update user method is called";
+	@PutMapping(path = "/{id}", 
+			consumes = { MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE }, 
+			produces = { MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE })
+	public UserRest updateUser(@PathVariable String id, @RequestBody UserDetailsRequestModel userDetails) {
+		UserRest returnValue = new UserRest();
+		
+		UserDto userDto = new UserDto();
+		BeanUtils.copyProperties(userDetails, userDto);
+		
+		UserDto updateUser = userService.updateUser(id, userDto);
+		BeanUtils.copyProperties(updateUser, returnValue);
+		return returnValue;
 	}
 
-	@DeleteMapping
-	public String deleteUser() {
-		return "delete user method is called";
+	@DeleteMapping(path = "/{id}", 
+			produces = { MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE })
+	public OperationStatusModel deleteUser(@PathVariable String id) {
+		
+		OperationStatusModel returnValue = new OperationStatusModel();
+		returnValue.setOperationName(RequestOperationName.DELETE.name());
+		
+		userService.deleteUser(id);
+		
+		returnValue.setOperationResult(RequestOperationStatus.SUCCESS.name());
+		return returnValue;
 	}
 }
