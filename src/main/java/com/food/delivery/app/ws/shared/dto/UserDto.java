@@ -2,10 +2,10 @@ package com.food.delivery.app.ws.shared.dto;
 
 import java.io.Serializable;
 
-public class UserDto implements Serializable{
+public class UserDto implements Serializable {
 
 	private static final long serialVersionUID = -5382713250745188694L;
-	
+
 	private long id;
 	private String userId;
 	private String firstName;
@@ -13,6 +13,7 @@ public class UserDto implements Serializable{
 	private String email;
 	private String password;
 	private String encryptedPassword;
+	private String userType;
 
 	public long getId() {
 		return id;
@@ -68,5 +69,13 @@ public class UserDto implements Serializable{
 
 	public void setEncryptedPassword(String encryptedPassword) {
 		this.encryptedPassword = encryptedPassword;
+	}
+
+	public String getUserType() {
+		return userType;
+	}
+
+	public void setUserType(String userType) {
+		this.userType = userType;
 	}
 }
