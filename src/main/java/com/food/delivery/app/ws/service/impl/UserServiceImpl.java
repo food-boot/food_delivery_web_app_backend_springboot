@@ -41,6 +41,7 @@ public class UserServiceImpl implements UserService{
 		
 		String publicUserId = utils.generateUserId(30);
 		userEntity.setUserId(publicUserId);
+		userEntity.setUserType("user");
 		UserEntity storedUserDetails = userRepository.save(userEntity);
 		
 		UserDto returnValue = new UserDto();
