@@ -41,6 +41,7 @@ public class UserServiceImpl implements UserService{
 		
 		String publicUserId = utils.generateUserId(30);
 		userEntity.setUserId(publicUserId);
+		userEntity.setUserType("user");
 		UserEntity storedUserDetails = userRepository.save(userEntity);
 		
 		UserDto returnValue = new UserDto();
@@ -72,13 +73,40 @@ public class UserServiceImpl implements UserService{
 
 	@Override
 	public UserDto getUserByUserId(String userId) throws UsernameNotFoundException{
-		UserDto returnValue =new UserDto();
+		UserDto returnValue = new UserDto();
 		UserEntity userEntity = userRepository.findByUserId(userId);
 		
 		if(userEntity == null) throw new UsernameNotFoundException(userId);
 		
 		BeanUtils.copyProperties(userEntity, returnValue);
 		return returnValue;
+	}
+
+	@Override
+	public UserDto updateUser(String userId, UserDto user) throws UsernameNotFoundException{
+		
+		UserDto returnValue = new UserDto();
+		
+		UserEntity userEntity = userRepository.findByUserId(userId);
+		
+		if(userEntity == null) throw new UsernameNotFoundException(userId);
+		
+		userEntity.setFirstName(user.getFirstName());
+		userEntity.setLastName(user.getLastName());
+		
+		UserEntity updatedUserDetails = userRepository.save(userEntity);
+		BeanUtils.copyProperties(updatedUserDetails, returnValue);
+		
+		return returnValue;
+	}
+
+	@Override
+	public void deleteUser(String userId) throws UsernameNotFoundException{
+		
+		UserEntity userEntity = userRepository.findByUserId(userId);
+		if(userEntity == null) throw new UsernameNotFoundException(userId);
+		
+		userRepository.delete(userEntity);	
 	}
 
 }
