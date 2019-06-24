@@ -23,7 +23,7 @@ import com.food.delivery.app.ws.shared.dto.UserDto;
 
 @RestController
 @RequestMapping("/users")
-public class UsesrController {
+public class UserController {
 
 	@Autowired
 	UserService userService;
@@ -58,6 +58,7 @@ public class UsesrController {
 		return returnValue;
 	}
 
+	@CrossOrigin
 	@PutMapping(path = "/{id}", 
 			consumes = { MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE }, 
 			produces = { MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE })
@@ -72,6 +73,7 @@ public class UsesrController {
 		return returnValue;
 	}
 
+	@CrossOrigin
 	@DeleteMapping(path = "/{id}", 
 			produces = { MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE })
 	public OperationStatusModel deleteUser(@PathVariable String id) {
