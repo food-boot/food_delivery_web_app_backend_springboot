@@ -34,6 +34,9 @@ public class UserEntity implements Serializable {
 	@Column(nullable = false)
 	private String picURL;
 
+	@Column(nullable = false)
+	private String userType;
+
 	public long getId() {
 		return id;
 	}
@@ -88,5 +91,13 @@ public class UserEntity implements Serializable {
 
 	public void setPicURL(String picURL) {
 		this.picURL = picURL;
+	}
+
+	public String getUserType() {
+		return userType;
+	}
+
+	public void setUserType(String userType) {
+		this.userType = userType;
 	}
 }
