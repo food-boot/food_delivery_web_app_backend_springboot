@@ -1,12 +1,13 @@
 package com.food.delivery.app.ws.model.response;
 
 public class UserRest {
-	
+
 	private String userId;
 	private String email;
 	private String firstName;
 	private String lastName;
 	private String picURL;
+	private String userType;
 
 	public String getUserId() {
 		return userId;
@@ -47,5 +48,12 @@ public class UserRest {
 	public void setPicURL(String picURL) {
 		this.picURL = picURL;
 	}
+
+	public String getUserType() {
+		return userType;
+	}
+
+	public void setUserType(String userType) {
+		this.userType = userType;
+	}
 }
-	
