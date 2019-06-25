@@ -1,10 +1,12 @@
 package com.food.delivery.app.ws.model.response;
 
+
 public class OrderDetailsResponse {
 
 	private String orderId;
 	private float cost;
 	private String items[];
+	private String userId;
 
 	public String getOrderId() {
 		return orderId;
@@ -30,4 +32,11 @@ public class OrderDetailsResponse {
 		this.items = items;
 	}
 
+	public String getUserId() {
+		return userId;
+	}
+
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
 }
