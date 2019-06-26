@@ -24,6 +24,10 @@ import com.food.delivery.app.ws.model.response.UserRest;
 import com.food.delivery.app.ws.service.UserService;
 import com.food.delivery.app.ws.shared.dto.UserDto;
 
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.ApiOperation;
+
 @RestController
 @RequestMapping("/users")
 public class UserController {
@@ -32,6 +36,8 @@ public class UserController {
 	UserService userService;
 
 	@CrossOrigin
+	@ApiOperation(value = "The Get User Details Web Service Endpoint", notes = "This web service endpoint returns the User detials with json array or xml format")
+	@ApiImplicitParams({ @ApiImplicitParam(name = "authorization", value = "Bearer JWT Token", paramType = "header")})
 	@GetMapping(path = "/{id}", 
 			produces = { MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE })
 	public UserRest getUser(@PathVariable String id) {
@@ -45,6 +51,7 @@ public class UserController {
 	}
 
 	@CrossOrigin
+	@ApiOperation(value = "The User Registration Web Service Endpoint", notes = "This web service endpoint returns the User detials with json array or xml format when the user is created")
 	@PostMapping(
 			consumes = { MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE }, 
 			produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE })
@@ -62,6 +69,8 @@ public class UserController {
 	}
 
 	@CrossOrigin
+	@ApiOperation(value = "The User Details Update Web Service Endpoint", notes = "This web service endpoint returns the User detials or success message with json array or xml format when the user is updated")
+	@ApiImplicitParams({ @ApiImplicitParam(name = "authorization", value = "Bearer JWT Token", paramType = "header")})
 	@PutMapping(path = "/{id}", 
 			consumes = { MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE }, 
 			produces = { MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE })
@@ -77,6 +86,8 @@ public class UserController {
 	}
 
 	@CrossOrigin
+	@ApiOperation(value = "The User Deletion Web Service Endpoint", notes = "This web service endpoint returns success token with json array or xml format when the user is deleted")
+	@ApiImplicitParams({ @ApiImplicitParam(name = "authorization", value = "Bearer JWT Token", paramType = "header")})
 	@DeleteMapping(path = "/{id}", 
 			produces = { MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE })
 	public OperationStatusModel deleteUser(@PathVariable String id) {
@@ -91,6 +102,8 @@ public class UserController {
 	}
 	
 	@CrossOrigin
+	@ApiOperation(value = "The Get Users Web Service Endpoint", notes = "This web service endpoint returns List of User detials with json array or xml format")
+	@ApiImplicitParams({ @ApiImplicitParam(name = "authorization", value = "Bearer JWT Token", paramType = "header")})
 	@GetMapping(produces = { MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE })
 	public List<UserRest> getUsers(){
 		
