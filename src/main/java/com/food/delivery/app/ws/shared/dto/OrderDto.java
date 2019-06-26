@@ -10,6 +10,7 @@ public class OrderDto implements Serializable {
 	private float cost;
 	private String[] items;
 	private String userId;
+	private boolean status;
 
 	public long getId() {
 		return id;
@@ -49,6 +50,14 @@ public class OrderDto implements Serializable {
 
 	public void setUserId(String userId) {
 		this.userId = userId;
+	}
+
+	public boolean isStatus() {
+		return status;
+	}
+
+	public void setStatus(boolean status) {
+		this.status = status;
 	}
 
 }
