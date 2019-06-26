@@ -1,6 +1,10 @@
 package com.food.delivery.app.ws.service.impl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.modelmapper.ModelMapper;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
@@ -77,6 +81,21 @@ public class OrderServiceImpl implements OrderService {
 		
 		orderRepository.delete(orderEntity);
 		
+	}
+
+	@Override
+	public List<OrderDto> getOrders() {
+		
+		List<OrderDto> returnValue = new ArrayList<>();
+		
+		Iterable<OrderEntity> iteratableObjects = orderRepository.findAll();
+		
+		for(OrderEntity orderEntity : iteratableObjects) {
+			OrderDto orderDto = new OrderDto();
+			BeanUtils.copyProperties(orderEntity, orderDto);
+			returnValue.add(orderDto);
+		}
+		return returnValue;
 	}
 
 }

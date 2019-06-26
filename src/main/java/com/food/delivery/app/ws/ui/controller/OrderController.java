@@ -1,5 +1,8 @@
 package com.food.delivery.app.ws.ui.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -90,6 +93,24 @@ public class OrderController {
 		orderService.deleteOrder(id);
 		
 		returnValue.setOperationResult(RequestOperationStatus.SUCCESS.name());
+		return returnValue;
+	}
+	
+	@CrossOrigin
+	@GetMapping(
+			produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE })
+	public List<OrderDetailsResponse> getOrders() {
+		
+		List<OrderDetailsResponse> returnValue = new ArrayList<>();
+		
+		List<OrderDto> orders = orderService.getOrders();
+		
+		for(OrderDto orderDto : orders) {
+			OrderDetailsResponse response = new OrderDetailsResponse();
+			BeanUtils.copyProperties(orderDto, response);
+			returnValue.add(response);
+		}
+		
 		return returnValue;
 	}
 }
