@@ -1,13 +1,24 @@
-package com.food.delivery.app.ws.model.response;
+package com.food.delivery.app.ws.shared.dto;
 
+import java.io.Serializable;
 
-public class OrderDetailsResponse {
+public class OrderDto implements Serializable {
 
+	private static final long serialVersionUID = 2500955288592764755L;
+	private long id;
 	private String orderId;
 	private float cost;
-	private String items[];
+	private String[] items;
 	private String userId;
 	private boolean status;
+
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
 
 	public String getOrderId() {
 		return orderId;
@@ -25,11 +36,11 @@ public class OrderDetailsResponse {
 		this.cost = cost;
 	}
 
-	public String[] getItems() {
+	public String [] getItems() {
 		return items;
 	}
 
-	public void setItems(String[] items) {
+	public void setItems(String [] items) {
 		this.items = items;
 	}
 
@@ -48,4 +59,5 @@ public class OrderDetailsResponse {
 	public void setStatus(boolean status) {
 		this.status = status;
 	}
+
 }
