@@ -30,16 +30,24 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 
-		http.cors().and().csrf().disable().authorizeRequests()
-				.antMatchers(HttpMethod.POST, SecurityConstants.SIGN_UP_URL).permitAll().anyRequest().authenticated()
-				.and().addFilter(getAuthenticationFilter()).addFilter(new AuthorizationFilter(authenticationManager()))
-				.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+		http
+		.cors().and()
+		.csrf().disable().authorizeRequests()
+		.antMatchers(HttpMethod.POST, SecurityConstants.SIGN_UP_URL)
+		.permitAll()
+		.antMatchers("/v2/api-docs", "/configuration/**", "/swagger*/**", "/webjars/**")
+		.permitAll()
+		.anyRequest().authenticated().and()
+		.addFilter(getAuthenticationFilter())
+		.addFilter(new AuthorizationFilter(authenticationManager()))
+		.sessionManagement()
+		.sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 	}
 
 	@Bean
 	CorsConfigurationSource corsConfigurationSource() {
 		CorsConfiguration configuration = new CorsConfiguration();
-				
+
 		configuration.setAllowedOrigins(Arrays.asList("*"));
 		// or any domain that you want to restrict to
 		configuration.setAllowedMethods(Arrays.asList("GET", "POST"));
