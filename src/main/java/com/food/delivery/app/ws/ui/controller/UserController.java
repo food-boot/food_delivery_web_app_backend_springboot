@@ -1,5 +1,8 @@
 package com.food.delivery.app.ws.ui.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -86,4 +89,21 @@ public class UserController {
 		returnValue.setOperationResult(RequestOperationStatus.SUCCESS.name());
 		return returnValue;
 	}
+	
+	@CrossOrigin
+	@GetMapping(produces = { MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE })
+	public List<UserRest> getUsers(){
+		
+		List<UserRest> returnValue = new ArrayList<>();
+		
+		List<UserDto> users = userService.getUsers();
+		
+		for(UserDto userDto : users) {
+			UserRest userModel = new UserRest();
+			BeanUtils.copyProperties(userDto, userModel);
+			returnValue.add(userModel);
+		}
+		return returnValue;
+	}
+	
 }
