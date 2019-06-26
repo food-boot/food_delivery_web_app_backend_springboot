@@ -1,6 +1,10 @@
 package com.food.delivery.app.ws.ui.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.modelmapper.ModelMapper;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -84,6 +88,23 @@ public class FoodController {
 		foodService.deleteFoodItem(id);
 		
 		returnValue.setOperationResult(RequestOperationStatus.SUCCESS.name());
+		return returnValue;
+	}
+	
+	@CrossOrigin
+	@GetMapping(
+			produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE })
+	public List<FoodDetailsResponse> getFoods() {
+		
+		List<FoodDetailsResponse> returnValue = new ArrayList<>();
+		
+		List<FoodDto> foods = foodService.getFoods();
+		
+		for(FoodDto foodDto: foods) {
+			FoodDetailsResponse response = new FoodDetailsResponse();
+			BeanUtils.copyProperties(foodDto, response);
+			returnValue.add(response);
+		}
 		return returnValue;
 	}
 }

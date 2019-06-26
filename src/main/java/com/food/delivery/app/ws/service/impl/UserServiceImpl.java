@@ -1,6 +1,7 @@
 package com.food.delivery.app.ws.service.impl;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -107,6 +108,22 @@ public class UserServiceImpl implements UserService{
 		if(userEntity == null) throw new UsernameNotFoundException(userId);
 		
 		userRepository.delete(userEntity);	
+	}
+
+	@Override
+	public List<UserDto> getUsers() {
+
+		List<UserDto> returnValue = new ArrayList<>();
+		
+		Iterable<UserEntity> iterableObjects = userRepository.findAll();
+		
+		for(UserEntity userEntity: iterableObjects) {
+			UserDto userDto = new UserDto();
+			BeanUtils.copyProperties(userEntity, userDto);
+			returnValue.add(userDto);
+		}
+		
+		return returnValue;
 	}
 
 }
