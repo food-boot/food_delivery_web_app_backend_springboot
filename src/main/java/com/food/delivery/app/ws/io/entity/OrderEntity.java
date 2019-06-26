@@ -1,13 +1,43 @@
-package com.food.delivery.app.ws.model.response;
+package com.food.delivery.app.ws.io.entity;
 
+import java.io.Serializable;
 
-public class OrderDetailsResponse {
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
+@Entity(name = "orders")
+public class OrderEntity implements Serializable {
+
+	private static final long serialVersionUID = -6946120796474180178L;
+
+	@Id
+	@GeneratedValue
+	private long id;
+
+	@Column(nullable = false)
 	private String orderId;
+
+	@Column(nullable = false)
 	private float cost;
-	private String items[];
+
+	@Column(nullable = false)
+	private String[] items;
+
+	@Column(nullable = false)
 	private String userId;
+	
+	@Column(nullable = false)
 	private boolean status;
+
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
 
 	public String getOrderId() {
 		return orderId;
