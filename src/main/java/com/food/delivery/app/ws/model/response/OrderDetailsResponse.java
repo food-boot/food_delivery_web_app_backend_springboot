@@ -7,6 +7,7 @@ public class OrderDetailsResponse {
 	private float cost;
 	private String items[];
 	private String userId;
+	private boolean status;
 
 	public String getOrderId() {
 		return orderId;
@@ -38,5 +39,13 @@ public class OrderDetailsResponse {
 
 	public void setUserId(String userId) {
 		this.userId = userId;
+	}
+
+	public boolean isStatus() {
+		return status;
+	}
+
+	public void setStatus(boolean status) {
+		this.status = status;
 	}
 }
