@@ -15,7 +15,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.food.delivery.app.ws.model.request.OrderDetailsRequestModel;
+import com.food.delivery.app.ws.model.response.OperationStatusModel;
 import com.food.delivery.app.ws.model.response.OrderDetailsResponse;
+import com.food.delivery.app.ws.model.response.RequestOperationName;
+import com.food.delivery.app.ws.model.response.RequestOperationStatus;
 import com.food.delivery.app.ws.service.OrderService;
 import com.food.delivery.app.ws.shared.dto.OrderDto;
 
@@ -77,8 +80,16 @@ public class OrderController {
 	}
 	
 	@CrossOrigin
-	@DeleteMapping
-	public String deleteOrder() {
-		return "delete order method is called";
+	@DeleteMapping(path = "/{id}", 
+			produces = { MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE })
+	public OperationStatusModel deleteOrder(@PathVariable String id) {
+		
+		OperationStatusModel returnValue = new OperationStatusModel();
+		returnValue.setOperationName(RequestOperationName.DELETE.name());
+		
+		orderService.deleteOrder(id);
+		
+		returnValue.setOperationResult(RequestOperationStatus.SUCCESS.name());
+		return returnValue;
 	}
 }
