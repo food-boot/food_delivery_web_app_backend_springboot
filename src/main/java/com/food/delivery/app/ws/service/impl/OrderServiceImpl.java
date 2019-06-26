@@ -61,11 +61,22 @@ public class OrderServiceImpl implements OrderService {
 		
 		orderEntity.setCost(order.getCost());
 		orderEntity.setItems(order.getItems());
+		orderEntity.setStatus(true);
 		
 		OrderEntity updatedOrder = orderRepository.save(orderEntity);
 		returnValue = modelMapper.map(updatedOrder, OrderDto.class);
 		
 		return returnValue;
+	}
+
+	@Override
+	public void deleteOrder(String orderId) {
+		
+		OrderEntity orderEntity = orderRepository.findByOrderId(orderId);
+		if(orderEntity == null) throw new UsernameNotFoundException(orderId);
+		
+		orderRepository.delete(orderEntity);
+		
 	}
 
 }
