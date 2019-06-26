@@ -27,6 +27,9 @@ public class OrderEntity implements Serializable {
 
 	@Column(nullable = false)
 	private String userId;
+	
+	@Column(nullable = false)
+	private boolean status;
 
 	public long getId() {
 		return id;
@@ -66,5 +69,13 @@ public class OrderEntity implements Serializable {
 
 	public void setUserId(String userId) {
 		this.userId = userId;
+	}
+
+	public boolean isStatus() {
+		return status;
+	}
+
+	public void setStatus(boolean status) {
+		this.status = status;
 	}
 }
