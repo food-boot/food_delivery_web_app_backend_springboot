@@ -50,7 +50,7 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
 
 		configuration.setAllowedOrigins(Arrays.asList("*"));
 		// or any domain that you want to restrict to
-		configuration.setAllowedMethods(Arrays.asList("GET", "POST"));
+		configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE"));
 		configuration.setAllowedHeaders(Arrays.asList("*"));
 		// Add the method support as you like
 		UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
