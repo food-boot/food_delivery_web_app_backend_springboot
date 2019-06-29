@@ -50,6 +50,10 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
 
 		configuration.setAllowedOrigins(Arrays.asList("*"));
 		// or any domain that you want to restrict to
+		configuration.addAllowedHeader("Authorization");
+		configuration.addAllowedHeader("Content-Type");
+		configuration.addAllowedHeader("Accept");
+		configuration.addAllowedHeader("UserID");
 		configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE"));
 		configuration.setAllowedHeaders(Arrays.asList("*"));
 		// Add the method support as you like
