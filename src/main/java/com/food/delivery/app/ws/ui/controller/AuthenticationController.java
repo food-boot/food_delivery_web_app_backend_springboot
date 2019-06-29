@@ -43,8 +43,7 @@ public class AuthenticationController {
 	@RequestMapping(value = "/users/{email}", method = RequestMethod.GET)
 	public UserRest getUserByEmail(@PathVariable String email) {
 		
-		UserRest returnValue = new UserRest();	
-		logger.info(email);
+		UserRest returnValue = new UserRest();
 		
 		UserDto user = userService.getUser(email);
 		BeanUtils.copyProperties(user, returnValue);
