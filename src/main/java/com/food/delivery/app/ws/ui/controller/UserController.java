@@ -3,6 +3,7 @@ package com.food.delivery.app.ws.ui.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -34,6 +35,8 @@ public class UserController {
 
 	@Autowired
 	UserService userService;
+	
+	org.slf4j.Logger logger = LoggerFactory.getLogger(UserController.class);
 
 	@CrossOrigin
 	@ApiOperation(value = "The Get User Details Web Service Endpoint", notes = "This web service endpoint returns the User detials with json array or xml format")
@@ -42,11 +45,13 @@ public class UserController {
 			produces = { MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE })
 	public UserRest getUser(@PathVariable String id) {
 
+		logger.info("UserController -> getUser() method has been called");
 		UserRest returnValue = new UserRest();
 
 		UserDto userDto = userService.getUserByUserId(id);
 		BeanUtils.copyProperties(userDto, returnValue);
 
+		logger.info("Return the user to the requester");
 		return returnValue;
 	}
 
