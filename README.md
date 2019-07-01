@@ -1,4 +1,4 @@
-# Food-Delivery-Web-App-BackEnd-ScpringBoot
+# Food-Delivery-Web-App-BackEnd-SpringBoot
 
 ## Installation
 
