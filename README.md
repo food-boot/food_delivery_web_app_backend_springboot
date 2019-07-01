@@ -1,4 +1,4 @@
-# Food-Delivery-Web-App-BackEnd-ScpringBoot
+# Food-Delivery-Web-App-BackEnd-SpringBoot
 
 ## Installation
 
@@ -6,7 +6,7 @@ Download the source code. You can either download it as a zip file and
 extract it or simply type the command in the terminal or bash or cmd,
 
 `git clone 
-https://github.com/shehand/Food-Delivery-Web-App-BackEnd-SpringBoot.git`
+https://github.com/food-boot/Food-Delivery-Web-App-BackEnd-SpringBoot.git`
 
 change your directory into the project folder. And run the command,
 
