@@ -1,9 +1,9 @@
 name: Docker_Build
 on:
   push:
-    branches: [ docker ]
+    branches: [ 1.0.0 ]
   pull_request:
-    branches: [ docker ]
+    branches: [ 1.0.0 ]
 
 jobs:
   build:
