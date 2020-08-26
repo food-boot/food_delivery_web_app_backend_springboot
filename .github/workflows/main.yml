@@ -12,5 +12,13 @@ jobs:
     - uses: actions/checkout@v2
     - name: Docker Build For food boot
       run: |
-        docker build ./ -t foot-boot/food-delivery-web-app:0.0.1
+        docker build ./ -t food-boot/food-delivery-api:0.0.1
+    - name: Push to GitHub Packages
+      uses: docker/build-push-action@v1
+      with:
+        username: ${{ github.actor }}
+        password: ${{ secrets.GH_TOKEN }}
+        registry: docker.pkg.github.com
+        repository: food-boot/foot-boot/food-delivery-api
+        tag_with_ref: true
 
