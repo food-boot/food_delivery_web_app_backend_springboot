@@ -9,16 +9,15 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
     - name: Docker Build For food boot
-      run: |
-        docker build ./ -t food-boot/food-delivery-api:0.0.1
+      uses: actions/checkout@v2
+    
     - name: Push to GitHub Packages
       uses: docker/build-push-action@v1
       with:
         username: ${{ github.actor }}
         password: ${{ secrets.GH_TOKEN }}
         registry: docker.pkg.github.com
-        repository: food-boot/foot-boot/food-delivery-api
+        repository:  foot-boot/food-delivery-web-app-backend-springboot food-delivery-api/food-delivery-api
         tag_with_ref: true
 
