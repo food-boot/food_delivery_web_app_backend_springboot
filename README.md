@@ -34,7 +34,7 @@ documentation.
 > If you failed to start the server try to configure your database 
 details with the project. To update database details find the file 
 located in **`src\main\resources`** and find the file 
-**`application.properties`**. And update followind details.
+**`application.properties`**. And update following details.
 > 
 > `spring.datasource.username=<your database username>`
 > `spring.datasource.password=<your database user's password>`
