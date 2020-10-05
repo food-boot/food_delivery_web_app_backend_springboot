@@ -1,0 +1,15 @@
+name: Docker_Build
+on:
+  push:
+    branches: [ docker ]
+  pull_request:
+    branches: [ docker ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Docker Build For food boot
+      run: |
+        docker build -t foot-boot/food-delivery-web-app:0.0.1

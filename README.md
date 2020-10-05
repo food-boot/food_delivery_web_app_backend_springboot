@@ -2,7 +2,7 @@
 
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/7bea738603c14199811c6f303b084abb)](https://app.codacy.com/app/shehand/Food-Delivery-Web-App-BackEnd-SpringBoot?utm_source=github.com&utm_medium=referral&utm_content=shehand/Food-Delivery-Web-App-BackEnd-SpringBoot&utm_campaign=Badge_Grade_Dashboard)
 
-## Installation
+## Build from the Source
 
 Download the source code. You can either download it as a zip file and 
 extract it or simply type the command in the terminal or bash or cmd,
@@ -34,7 +34,7 @@ documentation.
 > If you failed to start the server try to configure your database 
 details with the project. To update database details find the file 
 located in **`src\main\resources`** and find the file 
-**`application.properties`**. And update followind details.
+**`application.properties`**. And update following details.
 > 
 > `spring.datasource.username=<your database username>`
 > `spring.datasource.password=<your database user's password>`
@@ -49,6 +49,19 @@ install command`, and in there you will see you .war file.
 To run the war file, use the below code.
 
 `java -jar food-delivery-web-app-0.0.1-SNAPSHOT.war`
+
+## Docker Installation
+
+The docker file containing the docker image building is in the **1.0.0 branch**. If you wish to use the docker file for the building, please follow the following steps.
+
+1. Make sure you have already installed Docker in your machine. If it is not, please refere [this](https://docs.docker.com/engine/install/) link.
+2. Switch to the 1.0.0 branch
+    `git checkout 1.0.0`
+3. Use a terminal inside the project where the Dockerfile is located. Execute the following command to build the image. Replace `<your tag>` by the tag of your own.
+    `docker build --tag <your tag> .`
+5. Run the image as a container.
+    `docker run -d -p8080:8080 <yout tag> `
+7. Use [docker exec](https://docs.docker.com/engine/reference/commandline/exec/) command to access the container by your own.
 
 PR's are welcome. Please submit any issue that you will face when 
 developing your spring-boot application.
