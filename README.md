@@ -1,7 +1,5 @@
 # Food-Delivery-Web-App-BackEnd-SpringBoot
 
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/7bea738603c14199811c6f303b084abb)](https://app.codacy.com/app/shehand/Food-Delivery-Web-App-BackEnd-SpringBoot?utm_source=github.com&utm_medium=referral&utm_content=shehand/Food-Delivery-Web-App-BackEnd-SpringBoot&utm_campaign=Badge_Grade_Dashboard)
-
 ## Build from the Source
 
 Download the source code. You can either download it as a zip file and 
