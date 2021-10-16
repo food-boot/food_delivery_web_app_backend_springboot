@@ -3,12 +3,12 @@
 ## Build from the Source
 
 Download the source code. You can either download it as a zip file and 
-extract it or simply type the command in the terminal or bash or cmd,
+extract it or simply execute the following command in the terminal.
 
 `git clone 
 https://github.com/food-boot/Food-Delivery-Web-App-BackEnd-SpringBoot.git`
 
-change your directory into the project folder. And run the command,
+Change your directory into the project folder. And run the following command.
 
 `mvn install`
 
