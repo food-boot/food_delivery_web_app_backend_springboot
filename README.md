@@ -42,7 +42,7 @@ you are done editing the above mention file.
 
 If you wan't to run the war version of the spring app, locate to the 
 folder `/target` which will be in your directory when you run the `mvn 
-install command`, and in there you will see you .war file.
+install command`, and in there you will see you `.war` file.
 
 To run the war file, use the below code.
 
@@ -58,9 +58,8 @@ The docker file containing the docker image building is in the **1.0.0 branch**.
 3. Use a terminal inside the project where the Dockerfile is located. Execute the following command to build the image. Replace `<your tag>` by the tag of your own.
     `docker build --tag <your tag> .`
 5. Run the image as a container.
-    `docker run -d -p8080:8080 <yout tag> `
+    `docker run -d -p 8080:8080 <yout tag> `
 7. Use [docker exec](https://docs.docker.com/engine/reference/commandline/exec/) command to access the container by your own.
 
-PR's are welcome. Please submit any issue that you will face when 
-developing your spring-boot application.
+PR's are welcome. Please submit any issue that you will face when developing your spring-boot application.
 
