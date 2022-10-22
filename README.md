@@ -59,7 +59,6 @@ The docker file containing the docker image building is in the **1.0.0 branch**.
     `docker build --tag <your tag> .`
 5. Run the image as a container.
     `docker run -d -p 8080:8080 <yout tag> `
-7. Use [docker exec](https://docs.docker.com/engine/reference/commandline/exec/) command to access the container by your own.
+7. Use [docker exec](https://docs.docker.com/engine/reference/commandline/exec/) command to access the container.
 
-PR's are welcome. Please submit any issue that you will face when developing your spring-boot application.
-
+PR's are welcome. Please submit any issue that you faced when developing your spring-boot application.
